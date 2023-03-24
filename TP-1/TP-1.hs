@@ -16,13 +16,13 @@ maxDelPar (n,m) = if (n > m)
 
 --2
 --a)
-sucesor (sumar 5 maxDelPar (4, (divisionYResto 2 2)))
+--sucesor (sumar 5 maxDelPar (4, (divisionYResto 2 2)))
 --b)
-maxDePar (divisionYResto ((sumar 5 5), (sucesor 0)))
+--maxDePar (divisionYResto ((sumar 5 5), (sucesor 0)))
 --c)
-divisionYResto (sumar 9 (maxDelPar (0 (sucesor 0))))
+--divisionYResto (sumar 9 (maxDelPar (0 (sucesor 0))))
 --d)
-sumar 5 (maxDePar (divisionYResto 10  (sucesor 3)))
+--sumar 5 (maxDePar (divisionYResto 10  (sucesor 3)))
 
 --3.1
 
@@ -152,7 +152,7 @@ pok4 = PK Agua 70
 
 
 superaA :: Pokemon -> Pokemon -> Bool
-superaA (PK tp ent) (PK tp1 ent1) = tipoDePokemonEsSuperior tp tp1
+superaA (PK tp ent) (PK tp1 ent1) = tipoSuperior tp tp1
 
 cantidadDePokemonDe :: TipoDePokemon -> Entrenador -> Int
 cantidadDePokemonDe tp (E _ pk1 pk2) = (sonDelMismoTipo tp pk1) + (sonDelMismoTipo tp pk2)
@@ -160,6 +160,16 @@ cantidadDePokemonDe tp (E _ pk1 pk2) = (sonDelMismoTipo tp pk1) + (sonDelMismoTi
 juntarPokemon :: (Entrenador, Entrenador) -> [Pokemon]
 juntarPokemon ((E _ pk1 pk2), (E _ pk3 pk4)) = pk1 : pk2 : pk3 : pk4 : []
 juntarPokemon _ = []
+
+tipoSuperior :: TipoDePokemon -> TipoDePokemon -> Bool
+tipoSuperior Agua Fuego =  True
+tipoSuperior Fuego Planta = True
+tipoSuperior Planta Agua = True
+tipoSuperior _  _ = False
+
+sonDelMismoTipo :: TipoDePokemon -> Pokemon -> Int
+sonDelMismoTipo tp (PK tp1 ent1) = if tp==tp1 then 1 else 0 
+
 
 --5
 
